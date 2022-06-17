@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oakoudad <oakoudad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/17 04:16:11 by oakoudad          #+#    #+#             */
+/*   Updated: 2022/06/17 04:18:44 by oakoudad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosopher.h"
 
 t_philo	*ft_lstnew(int index)
@@ -8,7 +20,7 @@ t_philo	*ft_lstnew(int index)
 	if (new == NULL)
 		return (NULL);
 	new->index = index;
-	new->count =0;
+	new->count = 0;
 	pthread_mutex_init(&new->fork, NULL);
 	new->next = NULL;
 	new->prev = NULL;
@@ -29,11 +41,10 @@ t_philo	*ft_lstlast(t_philo *lst)
 
 void	ft_lstadd_back(t_philo **lst, t_philo *new)
 {
-	t_philo *tmp;
+	t_philo	*tmp;
 
 	if (!new)
 		return ;
-
 	if (!(*lst))
 		*lst = new;
 	else

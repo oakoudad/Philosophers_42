@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   valid_args.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oakoudad <oakoudad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/17 04:16:25 by oakoudad          #+#    #+#             */
+/*   Updated: 2022/06/17 04:51:23 by oakoudad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../philosopher.h"
 
 size_t	ft_strlen(const char	*s)
@@ -66,7 +78,7 @@ int	valid_str(char *str)
 
 int	check_numbers(char **v)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (v[i])

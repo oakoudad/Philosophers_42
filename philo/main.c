@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oakoudad <oakoudad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/17 04:16:02 by oakoudad          #+#    #+#             */
+/*   Updated: 2022/06/17 04:28:40 by oakoudad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosopher.h"
 
 void	init_info(t_info *info, char **av, int ac)
@@ -19,9 +31,9 @@ void	init_info(t_info *info, char **av, int ac)
 
 void	init_philo(int nb_philo, t_philo **philo, t_info *info)
 {
-	int i;
-	t_philo *new;
-	t_philo *tmp;
+	int		i;
+	t_philo	*new;
+	t_philo	*tmp;
 
 	i = 1;
 	*philo = NULL;
@@ -29,7 +41,7 @@ void	init_philo(int nb_philo, t_philo **philo, t_info *info)
 	{
 		new = ft_lstnew(i);
 		new->time = info;
-		new->last_meal = get_c_time();
+		new->meal = get_c_time();
 		ft_lstadd_back(philo, new);
 		i++;
 	}
@@ -41,8 +53,8 @@ void	init_philo(int nb_philo, t_philo **philo, t_info *info)
 int	main(int ac, char **av)
 {
 	t_info	info;
-	t_philo *philo;
-	t_philo *head;
+	t_philo	*philo;
+	t_philo	*head;
 
 	if (ac == 5 || ac == 6)
 		init_info(&info, av, ac);
@@ -50,7 +62,6 @@ int	main(int ac, char **av)
 		return (printf("Bad Args"), 0);
 	if (!check_numbers(av) || check_info(&info))
 		return (printf("Bad Args"), 0);
-	
 	init_philo(info.nb_philo, &philo, &info);
 	head = philo;
 	while (head->next)
@@ -60,7 +71,7 @@ int	main(int ac, char **av)
 		if (head->index == 1)
 			break ;
 	}
-	while(ft_die(&philo, info.to_die) && is_full(&philo))
+	while (ft_die(&philo, info.to_die) && is_full(&philo))
 		usleep(100);
 	return (0);
 }
