@@ -6,7 +6,7 @@
 /*   By: oakoudad <oakoudad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 04:47:51 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/06/17 04:50:06 by oakoudad         ###   ########.fr       */
+/*   Updated: 2022/06/17 08:56:06 by oakoudad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_info
 	int				is_die;
 	int				is_full;
 	long			open_time;
+	int				is_out;
 	pthread_mutex_t	print;
 	pthread_mutex_t	full;
 }	t_info;

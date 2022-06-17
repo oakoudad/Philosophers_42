@@ -6,7 +6,7 @@
 /*   By: oakoudad <oakoudad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 04:16:15 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/06/17 04:37:33 by oakoudad         ###   ########.fr       */
+/*   Updated: 2022/06/17 09:43:53 by oakoudad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ int	is_full(t_philo **philo)
 				break ;
 		}
 		if (i == tmp->time->nb_philo)
+		{
+			tmp->time->is_out = 0;
 			return (0);
+		}
 	}
 	return (1);
 }
@@ -42,8 +45,12 @@ void	print_dead(t_philo	**philo)
 	tmp = *philo;
 	tmp->time->is_die = 0;
 	pthread_mutex_lock(&tmp->time->print);
-	printf("%ldms\t", get_c_time() - tmp->time->open_time);
-	printf("%d is dead\n", tmp->index);
+	if (tmp->time->is_out)
+	{
+		tmp->time->is_out = 0;
+		printf("%ldms\t", get_c_time() - tmp->time->open_time);
+		printf("%d is dead\n", tmp->index);
+	}
 }
 
 int	ft_die(t_philo **philo, long to_die)
@@ -103,8 +110,8 @@ void	*func(void *p)
 		pthread_mutex_lock(&philo->next->fork);
 		ft_printf("is taking a fork", &philo);
 		ft_printf("is eating", &philo);
-		ft_usleep(philo, philo->time->to_eat);
 		philo->meal = get_c_time();
+		ft_usleep(philo, philo->time->to_eat);
 		pthread_mutex_unlock(&philo->fork);
 		pthread_mutex_unlock(&philo->next->fork);
 		ft_printf("is sleeping", &philo);
